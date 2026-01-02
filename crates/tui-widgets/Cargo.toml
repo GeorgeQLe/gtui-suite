@@ -1,0 +1,22 @@
+[package]
+name = "tui-widgets"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+description = "Reusable TUI components for the TUI Suite"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+nucleo-matcher = { workspace = true }
+rusqlite = { workspace = true }
+serde = { workspace = true }
+thiserror = { workspace = true }
+regex = "1"
+unicode-width = "0.2"
+
+[dev-dependencies]
+insta = { workspace = true }
+proptest = { workspace = true }

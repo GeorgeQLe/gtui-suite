@@ -1,0 +1,23 @@
+[package]
+name = "time-tracker"
+version = "0.1.0"
+edition = "2021"
+description = "Track time with projects, Pomodoro technique, and analytics"
+license = "MIT"
+repository = "https://github.com/georgeqle/tui-suite"
+
+[dependencies]
+tui-widgets = { workspace = true }
+tui-theme = { workspace = true }
+tui-keybinds = { workspace = true }
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+rusqlite = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }
+uuid = { version = "1", features = ["v4", "serde"] }
+thiserror = { workspace = true }
+directories = "5"
+toml = { workspace = true }
+anyhow = { workspace = true }

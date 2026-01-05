@@ -8,6 +8,7 @@ members = [
     "crates/tui-keybinds",
     "crates/tui-shell",
     "crates/tui-testing",
+    "crates/tui-plugins",
 
     # Tier 1: Simple apps
     "apps/habit-tracker",
@@ -27,48 +28,42 @@ members = [
     "apps/service-manager",
     "apps/process-monitor",
 
-    # Tier 3: Complex apps
-    "apps/log-viewer",
-    "apps/ssh-hub",
-    "apps/backup-manager",
-    "apps/server-dashboard-ssh",
-    "apps/server-dashboard-agent",
-    "apps/network-monitor",
-    "apps/docker-manager",
-    "apps/file-manager",
-    "apps/diff-tool",
-    "apps/hex-editor",
-    "apps/csv-viewer",
-    "apps/kanban-standalone",
-
-    # Tier 4: Advanced apps
-    "apps/git-client",
-    "apps/api-tester",
-    "apps/ci-dashboard",
-    "apps/k8s-dashboard",
-    "apps/db-client",
-    "apps/metrics-viewer",
-    "apps/queue-monitor-rabbitmq",
-    "apps/queue-monitor-kafka",
-    "apps/queue-monitor-redis",
-    "apps/kanban-integrated",
-    "apps/cli-wizard-generator",
-
-    # Tier 5: Expert apps
-    "apps/chat-client",
-    "apps/email-client",
-    "apps/log-anomaly-detector",
-    "apps/port-scanner-local",
-    "apps/port-scanner-full",
-    "apps/port-scanner-passive",
-    "apps/permissions-auditor-consumer",
-    "apps/permissions-auditor-enterprise",
-
-    # TUI Shell variants
-    "apps/tui-shell-tiled",
-    "apps/tui-shell-floating",
-    "apps/tui-shell-tabbed",
-    "apps/tui-shell-fullscreen",
+    # Tier 3+ apps (not yet implemented)
+    # "apps/log-viewer",
+    # "apps/ssh-hub",
+    # "apps/backup-manager",
+    # "apps/server-dashboard-ssh",
+    # "apps/server-dashboard-agent",
+    # "apps/network-monitor",
+    # "apps/docker-manager",
+    # "apps/file-manager",
+    # "apps/diff-tool",
+    # "apps/hex-editor",
+    # "apps/csv-viewer",
+    # "apps/kanban-standalone",
+    # "apps/git-client",
+    # "apps/api-tester",
+    # "apps/ci-dashboard",
+    # "apps/k8s-dashboard",
+    # "apps/db-client",
+    # "apps/metrics-viewer",
+    # "apps/queue-monitor-rabbitmq",
+    # "apps/queue-monitor-kafka",
+    # "apps/queue-monitor-redis",
+    # "apps/kanban-integrated",
+    # "apps/cli-wizard-generator",
+    # "apps/chat-client",
+    # "apps/email-client",
+    # "apps/log-anomaly-detector",
+    # "apps/port-scanner-local",
+    # "apps/port-scanner-full",
+    # "apps/port-scanner-passive",
+    # "apps/permissions-auditor-consumer",
+    # "apps/permissions-auditor-enterprise",
+    # "apps/tui-shell-tiled",
+    # "apps/tui-shell-floating",
+    # "apps/tui-shell-tabbed",
+    # "apps/tui-shell-fullscreen",
 ]
 
 [workspace.package]
@@ -81,7 +76,7 @@ authors = ["georgeqle"]
 [workspace.dependencies]
 # TUI framework
 ratatui = "0.29"
-crossterm = "0.28"
+crossterm = { version = "0.28", features = ["serde"] }
 
 # Async runtimes (app-specific choice)
 tokio = { version = "1", features = ["full"] }
@@ -103,6 +98,7 @@ thiserror = "2"
 anyhow = "1"
 tracing = "0.1"
 tracing-subscriber = "0.3"
+directories = "5"
 
 # Data processing
 polars = { version = "0.45", features = ["lazy", "csv", "parquet"] }
@@ -128,3 +124,4 @@ tui-theme = { path = "crates/tui-theme" }
 tui-keybinds = { path = "crates/tui-keybinds" }
 tui-shell = { path = "crates/tui-shell" }
 tui-testing = { path = "crates/tui-testing" }
+tui-plugins = { path = "crates/tui-plugins" }

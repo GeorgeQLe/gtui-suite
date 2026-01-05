@@ -10,9 +10,9 @@ use crate::sandbox::SandboxConfig;
 use crate::Backend;
 use mlua::{Function, Lua, Table, Value};
 use std::path::Path;
-use std::sync::Arc;
 
 /// A Lua-based plugin.
+#[allow(dead_code)]
 pub struct LuaPlugin {
     /// Plugin ID.
     id: String,
@@ -46,18 +46,18 @@ impl LuaPlugin {
 
         // Extract metadata
         let id: String = plugin_table
-            .get("id")
+            .get::<_, String>("id")
             .map_err(|_| PluginError::ManifestError("Missing plugin.id".to_string()))?;
 
         let name: String = plugin_table
-            .get("name")
+            .get::<_, String>("name")
             .unwrap_or_else(|_| id.clone());
 
         let version: String = plugin_table
-            .get("version")
+            .get::<_, String>("version")
             .unwrap_or_else(|_| "0.0.0".to_string());
 
-        let description: Option<String> = plugin_table.get("description").ok();
+        let description: Option<String> = plugin_table.get::<_, String>("description").ok();
 
         // Parse capabilities
         let capabilities = Self::parse_capabilities(&plugin_table)?;
@@ -142,7 +142,7 @@ impl LuaPlugin {
     fn parse_capabilities(table: &Table) -> PluginResult<Vec<Capability>> {
         let mut capabilities = Vec::new();
 
-        if let Ok(caps) = table.get::<Table>("capabilities") {
+        if let Ok(caps) = table.get::<_, Table>("capabilities") {
             for pair in caps.pairs::<usize, String>() {
                 if let Ok((_, cap_name)) = pair {
                     capabilities.push(Capability::from_str_simple(&cap_name));
@@ -154,7 +154,7 @@ impl LuaPlugin {
     }
 
     /// Get the plugin table from registry.
-    fn get_plugin_table(&self) -> PluginResult<Table> {
+    fn get_plugin_table(&self) -> PluginResult<Table<'_>> {
         self.lua
             .named_registry_value("plugin")
             .map_err(|e| PluginError::Lua(e.to_string()))
@@ -168,9 +168,9 @@ impl LuaPlugin {
     {
         let plugin_table = self.get_plugin_table()?;
 
-        match plugin_table.get::<Function>(name) {
+        match plugin_table.get::<_, Function>(name) {
             Ok(func) => {
-                let result = func.call::<R>(args)?;
+                let result = func.call::<A, R>(args)?;
                 Ok(Some(result))
             }
             Err(mlua::Error::FromLuaConversionError { .. }) => Ok(None),
@@ -239,7 +239,7 @@ impl Plugin for LuaPlugin {
 
         // Convert event to Lua table
         let event_json = serde_json::to_string(event)?;
-        let event_table: Value = self.lua.load(&format!("return {}",
+        let _event_table: Value = self.lua.load(&format!("return {}",
             event_json.replace("\"", "'")
                 .replace("null", "nil")
         )).eval().unwrap_or(Value::Nil);
@@ -254,8 +254,8 @@ impl Plugin for LuaPlugin {
 
         if let Some(response_table) = result {
             // Parse response from Lua table
-            let action: String = response_table.get("action").unwrap_or_default();
-            let message: Option<String> = response_table.get("message").ok();
+            let action: String = response_table.get::<_, String>("action").unwrap_or_default();
+            let message: Option<String> = response_table.get::<_, String>("message").ok();
 
             if action == "notify" {
                 if let Some(msg) = message {
@@ -273,11 +273,11 @@ impl Plugin for LuaPlugin {
         let mut commands = Vec::new();
 
         if let Ok(plugin_table) = self.get_plugin_table() {
-            if let Ok(cmds) = plugin_table.get::<Table>("commands") {
+            if let Ok(cmds) = plugin_table.get::<_, Table>("commands") {
                 for pair in cmds.pairs::<String, Table>() {
                     if let Ok((id, cmd_table)) = pair {
-                        let label: String = cmd_table.get("label").unwrap_or_else(|_| id.clone());
-                        let description: Option<String> = cmd_table.get("description").ok();
+                        let label: String = cmd_table.get::<_, String>("label").unwrap_or_else(|_| id.clone());
+                        let description: Option<String> = cmd_table.get::<_, String>("description").ok();
 
                         commands.push(PluginCommand {
                             id: format!("{}:{}", self.id, id),

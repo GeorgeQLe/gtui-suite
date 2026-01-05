@@ -50,7 +50,7 @@ where
         frame.render_stateful_widget(widget, frame.area(), state);
     });
 
-    let mut test = SnapshotTest::new(name, width, height)
+    let _test = SnapshotTest::new(name, width, height)
         .with_snapshots_dir("tests/snapshots");
 
     // Copy the buffer content to the snapshot test terminal
@@ -226,6 +226,7 @@ impl<W: Widget + Clone> WidgetTester<W> {
 }
 
 /// Test helper for stateful widgets.
+#[allow(dead_code)]
 pub struct StatefulWidgetTester<W, S> {
     widget: W,
     state: S,

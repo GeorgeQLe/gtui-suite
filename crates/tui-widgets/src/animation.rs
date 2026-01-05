@@ -145,7 +145,6 @@ fn cubic_bezier(t: f32, p1: f32, p2: f32) -> f32 {
     let t3 = t2 * t;
     let mt = 1.0 - t;
     let mt2 = mt * mt;
-    let mt3 = mt2 * mt;
 
     // B(t) = (1-t)³·P0 + 3(1-t)²t·P1 + 3(1-t)t²·P2 + t³·P3
     // With P0 = 0 and P3 = 1:
@@ -164,6 +163,7 @@ fn cubic_bezier_derivative(t: f32, p1: f32, p2: f32) -> f32 {
 }
 
 /// Animation state for a single animated value.
+#[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct Animation {
     /// Starting value
@@ -178,6 +178,7 @@ pub struct Animation {
     pub easing: EasingFunction,
 }
 
+#[allow(dead_code)]
 impl Animation {
     /// Create a new animation.
     pub fn new(from: f32, to: f32, duration_ms: u64, easing: EasingFunction) -> Self {

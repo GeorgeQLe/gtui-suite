@@ -6,10 +6,9 @@ use crate::error::PluginResult;
 use crate::event::PluginEvent;
 use crate::response::PluginResponse;
 use crate::Backend;
-use std::collections::HashMap;
 
 /// Core plugin trait that all plugins must implement.
-pub trait Plugin: Send + Sync {
+pub trait Plugin: Send {
     /// Get the unique plugin identifier.
     fn id(&self) -> &str;
 

@@ -1,6 +1,6 @@
 //! Database operations for time tracking.
 
-use crate::models::{Client, ClientId, DailySummary, Project, ProjectId, TimeEntry, EntryId, TimeReport};
+use crate::models::{Client, DailySummary, Project, ProjectId, TimeEntry, EntryId};
 use chrono::{DateTime, NaiveDate, Utc};
 use rusqlite::{params, Connection, Result as SqlResult};
 use std::path::Path;

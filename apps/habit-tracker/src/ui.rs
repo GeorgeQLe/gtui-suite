@@ -1,8 +1,7 @@
 //! UI rendering for habit tracker.
 
 use crate::app::{App, EditField, MessageType, View};
-use crate::models::HabitStats;
-use chrono::{Datelike, Duration, Utc};
+use chrono::{Duration, Utc};
 use ratatui::{
     layout::{Alignment, Constraint, Direction, Layout, Rect},
     style::{Color, Modifier, Style},
@@ -62,7 +61,7 @@ fn draw_header(f: &mut Frame, app: &App, area: Rect) {
     f.render_widget(header, area);
 }
 
-fn styled_tab(label: &str, active: bool) -> Span {
+fn styled_tab(label: &str, active: bool) -> Span<'_> {
     if active {
         Span::styled(
             format!("[{}]", label),
@@ -185,7 +184,7 @@ fn draw_calendar_view(f: &mut Frame, app: &App, area: Rect) {
     let today = Utc::now().date_naive();
     let weeks = 52;
     let week_width = 3;
-    let total_width = weeks * week_width;
+    let _total_width = weeks * week_width;
 
     let mut lines: Vec<Line> = Vec::new();
 

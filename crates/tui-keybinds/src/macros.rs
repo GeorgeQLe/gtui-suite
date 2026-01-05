@@ -1,7 +1,6 @@
 //! Macro recording and playback.
 
 use chrono::{DateTime, Utc};
-use crossterm::event::KeyEvent;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::path::Path;

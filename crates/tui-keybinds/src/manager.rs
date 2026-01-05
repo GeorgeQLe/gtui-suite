@@ -2,7 +2,7 @@
 
 use crate::binding::{KeyBinding, KeySequence};
 use crate::conflict::{Conflict, ConflictReport, ConflictSeverity};
-use crate::context::{ConditionState, Context};
+use crate::context::Context;
 use crate::display::KeyDisplayConfig;
 use crate::keymap::{ActionId, Keymap};
 use crate::macros::MacroManager;
@@ -11,7 +11,6 @@ use crate::scheme::KeyScheme;
 
 use crossterm::event::KeyEvent;
 use std::collections::{HashMap, HashSet};
-use std::path::Path;
 use std::time::Instant;
 use thiserror::Error;
 
@@ -136,9 +135,9 @@ impl KeybindManager {
         }
 
         // Try to get an action
-        if let Some(action) = self.get_action(&sequence) {
+        if let Some(action) = self.get_action(&sequence).cloned() {
             self.clear_pending();
-            return Some(action.clone());
+            return Some(action);
         }
 
         // Check if this could be a prefix of a longer sequence
@@ -153,9 +152,9 @@ impl KeybindManager {
             self.pending_keys.push(KeyBinding::new(event.code, event.modifiers));
             let sequence = KeySequence::from_keys(self.pending_keys.clone());
 
-            if let Some(action) = self.get_action(&sequence) {
+            if let Some(action) = self.get_action(&sequence).cloned() {
                 self.clear_pending();
-                return Some(action.clone());
+                return Some(action);
             }
         }
 

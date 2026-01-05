@@ -1,0 +1,14 @@
+[package]
+name = "cheatsheet-browser"
+version = "0.1.0"
+edition = "2021"
+description = "Search and browse command cheat sheets"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+serde = { workspace = true }
+toml = { workspace = true }
+anyhow = { workspace = true }
+directories = { workspace = true }
+fuzzy-matcher = { workspace = true }

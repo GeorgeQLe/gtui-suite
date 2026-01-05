@@ -32,10 +32,7 @@ pub use parser::parse_key;
 pub use preset::KeymapPreset;
 pub use scheme::KeyScheme;
 
-use crossterm::event::{KeyCode, KeyEvent, KeyModifiers};
-use serde::{Deserialize, Serialize};
-use std::collections::HashMap;
-use std::path::Path;
+use crossterm::event::{KeyCode, KeyModifiers};
 
 /// Helper to create a key binding from modifiers and key.
 pub fn key(code: KeyCode) -> KeyBinding {

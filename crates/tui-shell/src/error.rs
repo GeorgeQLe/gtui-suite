@@ -9,6 +9,14 @@ pub enum ShellError {
     #[error("Configuration error: {0}")]
     Config(String),
 
+    /// App error.
+    #[error("App error: {0}")]
+    App(String),
+
+    /// Task error.
+    #[error("Task error: {0}")]
+    Task(String),
+
     /// App not found.
     #[error("App not found: {0}")]
     AppNotFound(String),

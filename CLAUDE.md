@@ -6,6 +6,19 @@ This is **TUI Suite**, a Rust monorepo containing reusable TUI (Terminal User In
 
 **Repository**: https://github.com/georgeqle/tui-suite
 
+## Current Status
+
+| Component | Status |
+|-----------|--------|
+| **Shared Crates** | All 6 crates have implementations but are **disabled in workspace** (serde fixes needed) |
+| **Tier 1 Apps** (4) | Fully implemented |
+| **Tier 2 Apps** (10) | Fully implemented |
+| **Tier 3-5 Apps** (35) | Specs complete, implementation pending |
+
+**Known Blockers:**
+- Shared crates commented out in `Cargo.toml` due to serde compatibility issues
+- Once crates are fixed, enable them in workspace members
+
 ## Quick Commands
 
 ```bash
@@ -42,12 +55,13 @@ cargo clippy --workspace
 ```
 TUI/
 ├── Cargo.toml              # Workspace root with shared dependencies
-├── crates/                 # 5 shared foundation libraries
+├── crates/                 # 6 shared foundation libraries
 │   ├── tui-widgets/        # Reusable UI components (DataTable, TreeView, FormBuilder, CommandPalette)
 │   ├── tui-theme/          # Theming engine with presets and accessibility themes
 │   ├── tui-keybinds/       # Keybinding configuration and management
 │   ├── tui-shell/          # Multi-app orchestration shell
-│   └── tui-testing/        # Testing utilities (snapshot, input simulation, property-based)
+│   ├── tui-testing/        # Testing utilities (snapshot, input simulation, property-based)
+│   └── tui-plugins/        # Multi-backend plugin system (Lua, WASM, Native)
 ├── apps/                   # 49 applications organized by complexity tier
 │   ├── habit-tracker/      # Tier 1: Simple apps
 │   ├── task-manager/       # Tier 2: Moderate apps
@@ -121,6 +135,15 @@ Testing utilities. See `crates/tui-testing/SPEC.md`.
 - Test terminal (virtual headless terminal)
 - Property-based testing with proptest
 - Async test harness
+
+### tui-plugins
+Multi-backend plugin system. See `crates/tui-plugins/SPEC.md`.
+
+- Lua plugins via mlua (primary backend)
+- WASM plugins via wasmtime (phase 2)
+- Native plugins via .so/.dll (optional)
+- Unified `Plugin` trait abstracts backend differences
+- Sandboxed execution environment
 
 ## Application Tiers
 
@@ -324,17 +347,20 @@ Detailed specs are being developed through interviews. To resume, ask Claude to 
 | **tui-keybinds** | Done | Leader key pattern (configurable), full macro recording to TOML, error on conflict, expression+context conditions, full vim/emacs presets |
 | **tui-shell** | Done | Hybrid app launch (in-process/subprocess), Unix domain sockets IPC, sandboxed buffers, full session restore, multi-workspace support, binary split tiling |
 | **tui-testing** | Done | Structured buffer snapshots, custom implementation, multi-runtime harnesses, checkpoint assertions, configurable timing, structured diffs |
+| **tui-plugins** | Done | Multi-backend (Lua/WASM/Native), Lua via mlua primary, unified Plugin trait, sandboxed execution, phase 2 WASM support |
 
 ### Completed App Specs
 
-| Crate/App | Status | Key Decisions |
-|-----------|--------|---------------|
-| **Tier 1 apps** (4) | Done | habit-tracker, flashcard-trainer, time-tracker, cheatsheet-browser |
-| **Tier 2 apps** (9) | Done | task-manager, note-manager-*, personal-wiki, config-editor, task-scheduler, service-manager |
-| **Tier 3 apps** (10) | Done | process-monitor, log-viewer, ssh-hub, backup-manager, server-dashboard-*, network-monitor, docker-manager, file-manager, diff-tool |
-| **Tier 4 apps** (9) | Done | hex-editor, csv-viewer, kanban-standalone, git-client, api-tester, ci-dashboard, k8s-dashboard, db-client, metrics-viewer |
-| **Tier 5 apps** (11) | Done | queue-monitor-*, chat-client, email-client, log-anomaly-detector, port-scanner-*, permissions-auditor-* |
-| **Shell variants** (4) | Done | tui-shell-tiled, tui-shell-floating, tui-shell-tabbed, tui-shell-fullscreen |
+All 49 apps have complete SPEC.md files. Implementation status varies by tier.
+
+| Tier | Spec Status | Implementation | Apps |
+|------|-------------|----------------|------|
+| **Tier 1** (4) | Done | **Implemented** | habit-tracker, flashcard-trainer, time-tracker, cheatsheet-browser |
+| **Tier 2** (10) | Done | **Implemented** | task-manager, note-manager-*, personal-wiki, config-editor, task-scheduler, service-manager, process-monitor |
+| **Tier 3** (10) | Done | Pending | log-viewer, ssh-hub, backup-manager, server-dashboard-*, network-monitor, docker-manager, file-manager, diff-tool |
+| **Tier 4** (9) | Done | Pending | hex-editor, csv-viewer, kanban-standalone, git-client, api-tester, ci-dashboard, k8s-dashboard, db-client, metrics-viewer |
+| **Tier 5** (11) | Done | Pending | queue-monitor-*, chat-client, email-client, log-anomaly-detector, port-scanner-*, permissions-auditor-* |
+| **Shell variants** (4) | Done | Pending | tui-shell-tiled, tui-shell-floating, tui-shell-tabbed, tui-shell-fullscreen |
 
 ### Key Architecture Decisions Made
 

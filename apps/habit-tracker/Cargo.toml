@@ -7,9 +7,7 @@ license = "MIT"
 repository = "https://github.com/georgeqle/tui-suite"
 
 [dependencies]
-tui-widgets = { workspace = true }
-tui-theme = { workspace = true }
-tui-keybinds = { workspace = true }
+anyhow = { workspace = true }
 ratatui = { workspace = true }
 crossterm = { workspace = true }
 rusqlite = { workspace = true }

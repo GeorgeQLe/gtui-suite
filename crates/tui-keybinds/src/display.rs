@@ -49,17 +49,17 @@ impl KeyDisplayConfig {
     }
 
     /// Format a modifier key.
-    pub fn format_modifier(&self, name: &str) -> &'static str {
+    pub fn format_modifier(&self, name: &str) -> String {
         match (self.format, name.to_lowercase().as_str()) {
-            (KeyDisplayFormat::Symbolic, "ctrl" | "control") => "\u{2303}",
-            (KeyDisplayFormat::Symbolic, "alt" | "option") => "\u{2325}",
-            (KeyDisplayFormat::Symbolic, "shift") => "\u{21e7}",
-            (KeyDisplayFormat::Symbolic, "super" | "cmd" | "command") => "\u{2318}",
-            (_, "ctrl" | "control") => "Ctrl",
-            (_, "alt" | "option") => "Alt",
-            (_, "shift") => "Shift",
-            (_, "super" | "cmd" | "command") => "Super",
-            _ => name,
+            (KeyDisplayFormat::Symbolic, "ctrl" | "control") => "\u{2303}".to_string(),
+            (KeyDisplayFormat::Symbolic, "alt" | "option") => "\u{2325}".to_string(),
+            (KeyDisplayFormat::Symbolic, "shift") => "\u{21e7}".to_string(),
+            (KeyDisplayFormat::Symbolic, "super" | "cmd" | "command") => "\u{2318}".to_string(),
+            (_, "ctrl" | "control") => "Ctrl".to_string(),
+            (_, "alt" | "option") => "Alt".to_string(),
+            (_, "shift") => "Shift".to_string(),
+            (_, "super" | "cmd" | "command") => "Super".to_string(),
+            _ => name.to_string(),
         }
     }
 

@@ -136,11 +136,13 @@ pub trait Command: Send + Sync {
 pub type BoxedCommand = Box<dyn Command>;
 
 /// Command registry for managing available commands.
+#[allow(dead_code)]
 #[derive(Default)]
 pub struct CommandRegistry {
     commands: Vec<BoxedCommand>,
 }
 
+#[allow(dead_code)]
 impl CommandRegistry {
     /// Create a new empty command registry.
     pub fn new() -> Self {

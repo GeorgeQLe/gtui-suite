@@ -3,8 +3,7 @@
 use crate::algorithm::{get_algorithm, SrsAlgorithm};
 use crate::config::Config;
 use crate::db::{Database, DbResult};
-use crate::models::{Card, CardId, CardSchedule, Deck, DeckId, DeckStats, Response, Review, Session};
-use chrono::Utc;
+use crate::models::{Card, CardSchedule, Deck, DeckId, DeckStats, Response, Review, Session};
 use crossterm::event::{KeyCode, KeyEvent};
 use std::collections::HashMap;
 

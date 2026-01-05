@@ -32,11 +32,10 @@ pub use styles::{
 };
 pub use variant::ThemeVariant;
 
-use ratatui::style::{Modifier, Style as RatatuiStyle};
+use ratatui::style::Style as RatatuiStyle;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::path::PathBuf;
-use std::time::Duration;
 
 /// A complete theme definition.
 #[derive(Debug, Clone, Serialize, Deserialize)]

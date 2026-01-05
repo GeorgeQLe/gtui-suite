@@ -26,12 +26,12 @@ mod state;
 pub use state::PaletteState;
 
 use crate::accessibility::{Accessible, SoundCue};
-use crate::command::{BoxedCommand, Command, CommandError, CommandRegistry};
+use crate::command::{BoxedCommand, Command};
 use crate::form::{InputType, Value};
 use crate::WidgetConfig;
 
 use crossterm::event::{KeyCode, KeyEvent};
-use nucleo_matcher::pattern::{Atom, AtomKind, CaseMatching, Normalization, Pattern};
+use nucleo_matcher::pattern::{AtomKind, CaseMatching, Normalization, Pattern};
 use nucleo_matcher::{Config, Matcher, Utf32Str};
 use ratatui::buffer::Buffer;
 use ratatui::layout::Rect;
@@ -217,10 +217,9 @@ impl CommandPalette {
 
             // Match against label
             let label = cmd.command.label();
-            let label_utf32: Vec<char> = label.chars().collect();
-            let label_str = Utf32Str::new(&label_utf32, &mut Vec::new());
+            let mut label_buf = Vec::new();
+            let label_str = Utf32Str::new(label, &mut label_buf);
 
-            let mut indices = Vec::new();
             if let Some(score) = pattern.score(label_str, &mut self.matcher) {
                 results.push((idx, score));
                 continue;
@@ -228,8 +227,8 @@ impl CommandPalette {
 
             // Match against keywords
             for keyword in cmd.command.keywords() {
-                let kw_utf32: Vec<char> = keyword.chars().collect();
-                let kw_str = Utf32Str::new(&kw_utf32, &mut Vec::new());
+                let mut kw_buf = Vec::new();
+                let kw_str = Utf32Str::new(keyword, &mut kw_buf);
                 if let Some(score) = pattern.score(kw_str, &mut self.matcher) {
                     results.push((idx, score / 2)); // Keywords score lower
                     break;
@@ -238,8 +237,8 @@ impl CommandPalette {
 
             // Match against category
             if let Some(cat) = cmd.command.category() {
-                let cat_utf32: Vec<char> = cat.chars().collect();
-                let cat_str = Utf32Str::new(&cat_utf32, &mut Vec::new());
+                let mut cat_buf = Vec::new();
+                let cat_str = Utf32Str::new(cat, &mut cat_buf);
                 if let Some(score) = pattern.score(cat_str, &mut self.matcher) {
                     results.push((idx, score / 4)); // Category scores even lower
                 }
@@ -259,7 +258,7 @@ impl CommandPalette {
         }
 
         // Handle wizard mode
-        if let Some(ref mut wizard) = state.wizard_step {
+        if state.wizard_step.is_some() {
             return self.handle_wizard_key(key, state);
         }
 
@@ -451,7 +450,7 @@ impl StatefulWidget for CommandPalette {
         let results = self.get_results(&state.query);
         let results_y = input_y + 1;
 
-        for (i, &(cmd_idx, score)) in results.iter().take(self.max_results).enumerate() {
+        for (i, &(cmd_idx, _score)) in results.iter().take(self.max_results).enumerate() {
             let y = results_y + i as u16;
             if y >= inner.y + inner.height {
                 break;

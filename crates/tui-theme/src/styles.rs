@@ -1,6 +1,6 @@
 //! Widget style definitions.
 
-use crate::colors::ColorToken;
+use crate::colors::{ColorToken, deserialize_modifier, serialize_modifier};
 use crate::spacing::Spacing;
 use ratatui::style::Modifier;
 use serde::{Deserialize, Serialize};
@@ -126,7 +126,7 @@ pub struct WidgetStyle {
     #[serde(default)]
     pub padding: Spacing,
     /// Text modifiers
-    #[serde(default)]
+    #[serde(default, serialize_with = "serialize_modifier", deserialize_with = "deserialize_modifier")]
     pub modifiers: Modifier,
 }
 

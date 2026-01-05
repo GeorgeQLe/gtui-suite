@@ -1,7 +1,6 @@
 //! UI rendering for flashcard trainer.
 
 use crate::app::{App, InputField, View};
-use crate::models::Response;
 use ratatui::{
     layout::{Alignment, Constraint, Direction, Layout, Rect},
     style::{Color, Modifier, Style},
@@ -107,7 +106,7 @@ fn draw_study(f: &mut Frame, app: &App) {
 
     // Progress bar
     if let Some(session) = &app.session {
-        let progress = if session.total_cards() > 0 {
+        let _progress = if session.total_cards() > 0 {
             session.current_index as f64 / session.total_cards() as f64
         } else {
             0.0
@@ -243,7 +242,7 @@ fn draw_stats(f: &mut Frame, app: &App) {
     f.render_widget(footer, chunks[2]);
 }
 
-fn draw_browser(f: &mut Frame, app: &App) {
+fn draw_browser(f: &mut Frame, _app: &App) {
     let chunks = Layout::default()
         .direction(Direction::Vertical)
         .constraints([Constraint::Length(3), Constraint::Min(0), Constraint::Length(3)])

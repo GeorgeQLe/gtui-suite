@@ -2,7 +2,7 @@
 
 use crate::binding::{KeyBinding, KeySequence};
 use crate::context::Context;
-use crate::keymap::{ActionId, Keymap};
+use crate::keymap::Keymap;
 use crossterm::event::KeyCode;
 use serde::{Deserialize, Serialize};
 

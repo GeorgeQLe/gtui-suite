@@ -2,7 +2,7 @@
 
 use crate::config::Config;
 use crate::db::{Database, DbResult};
-use crate::models::{DailySummary, Project, ProjectId, TimeEntry};
+use crate::models::{Project, ProjectId, TimeEntry};
 use crate::pomodoro::PomodoroTimer;
 use chrono::{Duration, NaiveDate, Utc};
 use crossterm::event::{KeyCode, KeyEvent};

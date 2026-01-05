@@ -1,6 +1,6 @@
 //! Golden file management for snapshot testing.
 
-use crate::{TestError, TestResult};
+use crate::TestResult;
 use std::collections::HashSet;
 use std::path::{Path, PathBuf};
 
@@ -49,7 +49,6 @@ impl GoldenFiles {
         }
 
         let mut snapshots = Vec::new();
-        let pattern = format!("*.{}", self.extension);
 
         for entry in std::fs::read_dir(&self.base_path)? {
             let entry = entry?;

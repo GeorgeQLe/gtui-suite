@@ -7,6 +7,10 @@ repository.workspace = true
 authors.workspace = true
 description = "Full-featured theming engine for the TUI Suite"
 
+[features]
+default = []
+hot-reload = []
+
 [dependencies]
 ratatui = { workspace = true }
 serde = { workspace = true }

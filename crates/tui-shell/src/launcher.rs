@@ -1,6 +1,6 @@
 //! Application launcher with registry and fuzzy search.
 
-use crate::app::LaunchMode;
+use crate::app::PreferredLaunch;
 use crate::error::{ShellError, ShellResult};
 use crate::workspace::WorkspaceId;
 use serde::{Deserialize, Serialize};
@@ -23,7 +23,7 @@ pub struct AppMeta {
     /// Keywords for search.
     pub keywords: Vec<String>,
     /// Launch mode preference.
-    pub launch_mode: LaunchMode,
+    pub launch_mode: PreferredLaunch,
     /// Executable path (for subprocess).
     pub executable: Option<PathBuf>,
     /// Plugin ID (for in-process).
@@ -44,7 +44,7 @@ impl AppMeta {
             category: AppCategory::Other,
             icon: None,
             keywords: Vec::new(),
-            launch_mode: LaunchMode::Subprocess,
+            launch_mode: PreferredLaunch::Subprocess,
             executable: None,
             plugin_id: None,
             default_args: Vec::new(),
@@ -79,14 +79,14 @@ impl AppMeta {
     /// Set executable path.
     pub fn with_executable(mut self, path: PathBuf) -> Self {
         self.executable = Some(path);
-        self.launch_mode = LaunchMode::Subprocess;
+        self.launch_mode = PreferredLaunch::Subprocess;
         self
     }
 
     /// Set plugin ID.
     pub fn with_plugin(mut self, plugin_id: impl Into<String>) -> Self {
         self.plugin_id = Some(plugin_id.into());
-        self.launch_mode = LaunchMode::InProcess;
+        self.launch_mode = PreferredLaunch::InProcess;
         self
     }
 
@@ -298,7 +298,9 @@ impl AppLauncher {
             .apps
             .values()
             .filter_map(|app| {
-                let haystack = nucleo_matcher::Utf32Str::new(&app.search_text(), &mut vec![]);
+                let search_text = app.search_text();
+                let mut buf = vec![];
+                let haystack = nucleo_matcher::Utf32Str::new(&search_text, &mut buf);
                 pattern
                     .score(haystack, &mut self.matcher)
                     .map(|score| (app, score))
@@ -362,7 +364,7 @@ impl AppLauncher {
             .ok_or_else(|| ShellError::App(format!("Unknown app: {}", request.app_id)))?;
 
         match meta.launch_mode {
-            LaunchMode::Subprocess => {
+            PreferredLaunch::Subprocess => {
                 if meta.executable.is_none() {
                     return Err(ShellError::App(format!(
                         "App {} has no executable configured",
@@ -370,13 +372,16 @@ impl AppLauncher {
                     )));
                 }
             }
-            LaunchMode::InProcess => {
+            PreferredLaunch::InProcess => {
                 if meta.plugin_id.is_none() {
                     return Err(ShellError::App(format!(
                         "App {} has no plugin configured",
                         request.app_id
                     )));
                 }
+            }
+            PreferredLaunch::Either => {
+                // Both modes are acceptable, no validation needed
             }
         }
 

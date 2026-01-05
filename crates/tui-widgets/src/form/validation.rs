@@ -22,6 +22,8 @@ pub enum Validator {
     Custom(fn(&Value) -> Result<(), String>),
     /// Cross-field validation (has access to all form data)
     CrossField(fn(&Value, &FormData) -> Result<(), String>),
+    /// Must match another field's value
+    MatchesField(&'static str),
 }
 
 impl std::fmt::Debug for Validator {
@@ -35,6 +37,7 @@ impl std::fmt::Debug for Validator {
             Self::Max(n) => write!(f, "Max({})", n),
             Self::Custom(_) => write!(f, "Custom(fn)"),
             Self::CrossField(_) => write!(f, "CrossField(fn)"),
+            Self::MatchesField(field) => write!(f, "MatchesField({})", field),
         }
     }
 }
@@ -124,6 +127,14 @@ impl Validator {
             }
             Self::Custom(f) => f(value),
             Self::CrossField(f) => f(value, form_data),
+            Self::MatchesField(field_name) => {
+                let other = form_data.get(*field_name);
+                if Some(value) == other {
+                    Ok(())
+                } else {
+                    Err(format!("Must match {}", field_name))
+                }
+            }
         }
     }
 }
@@ -187,14 +198,7 @@ impl Validator {
 
     /// Password confirmation validator (checks against another field).
     pub fn matches_field(field_name: &'static str) -> Self {
-        Self::cross_field(move |value, form_data| {
-            let other = form_data.get(field_name);
-            if Some(value) == other {
-                Ok(())
-            } else {
-                Err(format!("Must match {}", field_name))
-            }
-        })
+        Self::MatchesField(field_name)
     }
 }
 

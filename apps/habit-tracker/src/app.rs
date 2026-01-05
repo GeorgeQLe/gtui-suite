@@ -2,9 +2,9 @@
 
 use crate::config::Config;
 use crate::db::{Database, DbResult};
-use crate::models::{Habit, HabitEntry, HabitId, HabitStats, Metric, Schedule};
-use chrono::{Datelike, Duration, NaiveDate, Utc, Weekday};
-use crossterm::event::{KeyCode, KeyEvent, KeyModifiers};
+use crate::models::{Habit, HabitEntry, HabitId, HabitStats};
+use chrono::{Duration, NaiveDate, Utc};
+use crossterm::event::{KeyCode, KeyEvent};
 use std::collections::HashMap;
 
 /// Application state.
@@ -358,10 +358,11 @@ impl App {
 
     /// Start editing selected habit.
     fn start_edit_habit(&mut self) {
-        if let Some(habit) = self.selected_habit() {
+        let name = self.selected_habit().map(|h| h.name.clone());
+        if let Some(name) = name {
             self.editing = true;
             self.editing_field = EditField::HabitName;
-            self.input_buffer = habit.name.clone();
+            self.input_buffer = name;
         }
     }
 

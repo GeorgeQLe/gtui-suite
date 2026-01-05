@@ -112,6 +112,7 @@ pub struct PluginManager {
 }
 
 /// Entry for a loaded plugin.
+#[allow(dead_code)]
 struct PluginEntry {
     plugin: Box<dyn Plugin>,
     state: PluginState,
@@ -327,13 +328,16 @@ impl PluginManager {
     }
 
     /// Get a plugin by ID.
-    pub fn get(&self, id: &str) -> Option<&dyn Plugin> {
+    pub fn get(&self, id: &str) -> Option<&(dyn Plugin + '_)> {
         self.plugins.get(id).map(|e| e.plugin.as_ref())
     }
 
     /// Get a mutable plugin by ID.
-    pub fn get_mut(&mut self, id: &str) -> Option<&mut dyn Plugin> {
-        self.plugins.get_mut(id).map(|e| e.plugin.as_mut())
+    pub fn get_mut(&mut self, id: &str) -> Option<&mut (dyn Plugin + '_)> {
+        match self.plugins.get_mut(id) {
+            Some(entry) => Some(entry.plugin.as_mut()),
+            None => None,
+        }
     }
 
     /// Check if a plugin is loaded.

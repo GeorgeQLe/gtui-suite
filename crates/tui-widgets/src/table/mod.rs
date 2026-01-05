@@ -45,7 +45,7 @@ use crossterm::event::{KeyCode, KeyEvent, KeyModifiers};
 use ratatui::buffer::Buffer;
 use ratatui::layout::Rect;
 use ratatui::style::{Color, Modifier, Style};
-use ratatui::widgets::{Block, Borders, StatefulWidget, Widget};
+use ratatui::widgets::{Block, StatefulWidget, Widget};
 
 use std::cmp::Ordering;
 use std::marker::PhantomData;

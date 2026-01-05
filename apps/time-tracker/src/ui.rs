@@ -52,7 +52,7 @@ fn draw_header(f: &mut Frame, app: &App, area: Rect) {
     f.render_widget(header, area);
 }
 
-fn styled_tab(label: &str, active: bool) -> Span {
+fn styled_tab(label: &str, active: bool) -> Span<'_> {
     if active {
         Span::styled(format!("[{}]", label), Style::default().fg(Color::Yellow).add_modifier(Modifier::BOLD))
     } else {
@@ -85,13 +85,13 @@ fn draw_timer_view(f: &mut Frame, app: &App, area: Rect) {
     let timer_content = if let Some(entry) = &app.running_entry {
         let duration = entry.format_duration();
         let desc = if entry.description.is_empty() {
-            "(no description - press Enter to add)"
+            "(no description - press Enter to add)".to_string()
         } else {
-            &entry.description
+            entry.description.clone()
         };
         vec![
             Line::from(vec![
-                Span::styled(&duration, Style::default().fg(Color::Green).add_modifier(Modifier::BOLD)),
+                Span::styled(duration, Style::default().fg(Color::Green).add_modifier(Modifier::BOLD)),
             ]),
             Line::from(""),
             Line::from(desc),

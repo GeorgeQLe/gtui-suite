@@ -1,6 +1,6 @@
 //! Structured diff for buffer snapshots.
 
-use crate::snapshot::{BufferSnapshot, CellSnapshot, SerializableColor, SerializableModifier};
+use crate::snapshot::{BufferSnapshot, CellSnapshot, SerializableColor};
 
 /// Changes detected in a single cell.
 #[derive(Debug, Clone, Default)]

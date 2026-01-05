@@ -1,6 +1,6 @@
 //! Database operations for flashcard trainer.
 
-use crate::models::{Card, CardId, CardSchedule, CardState, CardType, Deck, DeckId, DeckStats, Response, Review};
+use crate::models::{Card, CardId, CardSchedule, CardState, CardType, Deck, DeckId, DeckStats, Review};
 use chrono::{DateTime, Utc};
 use rusqlite::{params, Connection, Result as SqlResult};
 use std::path::Path;

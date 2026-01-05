@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 //! Habit Tracker - Track daily habits with streaks and analytics.
 
 mod app;

@@ -10,8 +10,12 @@ pub struct KeyBinding {
     /// The key code
     pub key: KeyCode,
     /// Modifier keys (Ctrl, Alt, Shift)
-    #[serde(default)]
+    #[serde(default = "default_modifiers")]
     pub modifiers: KeyModifiers,
+}
+
+fn default_modifiers() -> KeyModifiers {
+    KeyModifiers::NONE
 }
 
 impl KeyBinding {

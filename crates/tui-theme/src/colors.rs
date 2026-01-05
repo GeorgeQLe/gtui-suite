@@ -1,7 +1,49 @@
 //! Color types and palettes.
 
 use ratatui::style::{Color as RatatuiColor, Modifier};
-use serde::{Deserialize, Serialize};
+use serde::{Deserialize, Deserializer, Serialize, Serializer};
+
+/// Serialize Modifier as a list of strings
+pub fn serialize_modifier<S>(modifier: &Modifier, serializer: S) -> Result<S::Ok, S::Error>
+where
+    S: Serializer,
+{
+    let mut names = Vec::new();
+    if modifier.contains(Modifier::BOLD) { names.push("bold"); }
+    if modifier.contains(Modifier::DIM) { names.push("dim"); }
+    if modifier.contains(Modifier::ITALIC) { names.push("italic"); }
+    if modifier.contains(Modifier::UNDERLINED) { names.push("underlined"); }
+    if modifier.contains(Modifier::SLOW_BLINK) { names.push("slow_blink"); }
+    if modifier.contains(Modifier::RAPID_BLINK) { names.push("rapid_blink"); }
+    if modifier.contains(Modifier::REVERSED) { names.push("reversed"); }
+    if modifier.contains(Modifier::HIDDEN) { names.push("hidden"); }
+    if modifier.contains(Modifier::CROSSED_OUT) { names.push("crossed_out"); }
+    names.serialize(serializer)
+}
+
+/// Deserialize Modifier from a list of strings
+pub fn deserialize_modifier<'de, D>(deserializer: D) -> Result<Modifier, D::Error>
+where
+    D: Deserializer<'de>,
+{
+    let names: Vec<String> = Vec::deserialize(deserializer)?;
+    let mut modifier = Modifier::empty();
+    for name in names {
+        match name.to_lowercase().as_str() {
+            "bold" => modifier |= Modifier::BOLD,
+            "dim" => modifier |= Modifier::DIM,
+            "italic" => modifier |= Modifier::ITALIC,
+            "underlined" | "underline" => modifier |= Modifier::UNDERLINED,
+            "slow_blink" => modifier |= Modifier::SLOW_BLINK,
+            "rapid_blink" => modifier |= Modifier::RAPID_BLINK,
+            "reversed" | "reverse" => modifier |= Modifier::REVERSED,
+            "hidden" => modifier |= Modifier::HIDDEN,
+            "crossed_out" | "strikethrough" => modifier |= Modifier::CROSSED_OUT,
+            _ => {}
+        }
+    }
+    Ok(modifier)
+}
 
 /// Terminal color depth capability.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Default)]
@@ -142,7 +184,7 @@ pub struct ColorToken {
     /// The color value
     pub color: Color,
     /// Text modifiers (bold, italic, etc.)
-    #[serde(default)]
+    #[serde(default, serialize_with = "serialize_modifier", deserialize_with = "deserialize_modifier")]
     pub modifiers: Modifier,
 }
 

@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 //! Time Tracker - Track time with projects and Pomodoro technique.
 
 mod app;

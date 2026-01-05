@@ -133,12 +133,14 @@ pub trait Accessible {
 ///
 /// Widgets can queue announcements here, and the application can
 /// poll for pending announcements to display in a status line.
+#[allow(dead_code)]
 #[derive(Debug, Default)]
 pub struct AnnouncementBuffer {
     messages: Vec<Announcement>,
 }
 
 /// A single announcement with priority.
+#[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct Announcement {
     /// The message text
@@ -150,6 +152,7 @@ pub struct Announcement {
 }
 
 /// Priority levels for announcements.
+#[allow(dead_code)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub enum AnnouncementPriority {
     /// Low priority, can be skipped if busy
@@ -162,6 +165,7 @@ pub enum AnnouncementPriority {
     Critical,
 }
 
+#[allow(dead_code)]
 impl AnnouncementBuffer {
     /// Create a new empty announcement buffer.
     pub fn new() -> Self {

@@ -52,10 +52,9 @@ use crate::WidgetConfig;
 use crossterm::event::{KeyCode, KeyEvent};
 use ratatui::buffer::Buffer;
 use ratatui::layout::Rect;
-use ratatui::style::{Color, Modifier, Style};
+use ratatui::style::{Color, Style};
 use ratatui::widgets::{Block, StatefulWidget, Widget};
 
-use std::collections::HashSet;
 use std::future::Future;
 use std::pin::Pin;
 

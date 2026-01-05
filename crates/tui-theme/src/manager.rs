@@ -136,8 +136,8 @@ impl ThemeManager {
         let name = theme.name.clone();
 
         // Handle inheritance
-        let theme = if let Some(ref parent_name) = theme.extends {
-            self.resolve_inheritance(theme, parent_name)?
+        let theme = if let Some(parent_name) = theme.extends.clone() {
+            self.resolve_inheritance(theme, &parent_name)?
         } else {
             theme
         };
@@ -147,7 +147,7 @@ impl ThemeManager {
 
     /// Resolve theme inheritance.
     fn resolve_inheritance(&self, child: Theme, parent_name: &str) -> Result<Theme, ThemeError> {
-        let parent = self
+        let _parent = self
             .get(parent_name)
             .ok_or_else(|| ThemeError::NotFound(format!("Parent theme not found: {}", parent_name)))?;
 

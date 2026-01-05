@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 //! Flashcard Trainer - Spaced repetition flashcard system.
 
 mod algorithm;

@@ -25,7 +25,8 @@ impl TestTerminal {
 
     /// Get the current terminal size.
     pub fn size(&self) -> Rect {
-        self.terminal.size().expect("Failed to get terminal size")
+        let size = self.terminal.size().expect("Failed to get terminal size");
+        Rect::new(0, 0, size.width, size.height)
     }
 
     /// Get the width of the terminal.

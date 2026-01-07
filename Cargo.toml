@@ -36,10 +36,12 @@ members = [
     "apps/backup-manager",
     "apps/server-dashboard-ssh",
     "apps/diff-tool",
-    "apps/hex-editor",
     # "apps/server-dashboard-agent",
     # "apps/network-monitor",
-    # "apps/csv-viewer",
+
+    # Tier 4: Advanced apps
+    "apps/hex-editor",
+    "apps/csv-viewer",
     # "apps/kanban-standalone",
     # "apps/git-client",
     # "apps/api-tester",

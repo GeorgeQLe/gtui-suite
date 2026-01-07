@@ -43,7 +43,7 @@ members = [
     "apps/hex-editor",
     "apps/csv-viewer",
     "apps/kanban-standalone",
-    # "apps/git-client",
+    "apps/git-client",
     # "apps/api-tester",
     # "apps/ci-dashboard",
     # "apps/k8s-dashboard",

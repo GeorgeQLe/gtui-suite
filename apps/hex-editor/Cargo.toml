@@ -1,0 +1,17 @@
+[package]
+name = "hex-editor"
+version = "0.1.0"
+edition = "2021"
+description = "Binary file hex editor with search and editing"
+
+[dependencies]
+tui-widgets = { workspace = true }
+tui-theme = { workspace = true }
+tui-keybinds = { workspace = true }
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+serde = { workspace = true }
+toml = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+directories = "5"

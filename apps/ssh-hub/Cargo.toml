@@ -1,0 +1,42 @@
+[package]
+name = "ssh-hub"
+version = "0.1.0"
+edition = "2021"
+description = "SSH connection manager with profiles, snippets, and port forwarding"
+
+[dependencies]
+# Shared crates
+tui-widgets = { workspace = true }
+tui-theme = { workspace = true }
+tui-keybinds = { workspace = true }
+
+# TUI framework
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+
+# Async runtime
+tokio = { workspace = true, features = ["full", "process"] }
+
+# Database
+rusqlite = { workspace = true }
+
+# Serialization
+serde = { workspace = true }
+toml = { workspace = true }
+
+# Date/time and IDs
+chrono = { workspace = true }
+uuid = { workspace = true }
+
+# Fuzzy matching
+fuzzy-matcher = { workspace = true }
+
+# Error handling
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+
+# Config directory
+directories = "5"
+
+# SSH config parsing
+dirs = "5"

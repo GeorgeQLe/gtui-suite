@@ -32,7 +32,7 @@ members = [
     "apps/log-viewer",
     "apps/file-manager",
     "apps/docker-manager",
-    # "apps/ssh-hub",
+    "apps/ssh-hub",
     # "apps/backup-manager",
     # "apps/server-dashboard-ssh",
     # "apps/server-dashboard-agent",

@@ -31,12 +31,12 @@ members = [
     # Tier 3: Complex apps
     "apps/log-viewer",
     "apps/file-manager",
+    "apps/docker-manager",
     # "apps/ssh-hub",
     # "apps/backup-manager",
     # "apps/server-dashboard-ssh",
     # "apps/server-dashboard-agent",
     # "apps/network-monitor",
-    # "apps/docker-manager",
     # "apps/diff-tool",
     # "apps/hex-editor",
     # "apps/csv-viewer",

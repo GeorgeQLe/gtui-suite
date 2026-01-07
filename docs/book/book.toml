@@ -1,0 +1,15 @@
+[book]
+title = "TUI Suite Documentation"
+authors = ["George Le"]
+language = "en"
+multilingual = false
+src = "src"
+
+[build]
+build-dir = "book"
+
+[output.html]
+default-theme = "rust"
+preferred-dark-theme = "coal"
+git-repository-url = "https://github.com/GeorgeQLe/gtui-suite"
+edit-url-template = "https://github.com/GeorgeQLe/gtui-suite/edit/main/docs/book/{path}"

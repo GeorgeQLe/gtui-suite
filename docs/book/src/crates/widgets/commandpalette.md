@@ -1,0 +1,3 @@
+# Commandpalette
+
+Documentation coming soon.

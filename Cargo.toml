@@ -28,8 +28,8 @@ members = [
     "apps/service-manager",
     "apps/process-monitor",
 
-    # Tier 3+ apps (not yet implemented)
-    # "apps/log-viewer",
+    # Tier 3: Complex apps
+    "apps/log-viewer",
     # "apps/ssh-hub",
     # "apps/backup-manager",
     # "apps/server-dashboard-ssh",

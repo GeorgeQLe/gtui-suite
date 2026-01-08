@@ -65,7 +65,7 @@ members = [
     "apps/tui-shell-tiled",
     "apps/tui-shell-floating",
     "apps/tui-shell-tabbed",
-    # "apps/tui-shell-fullscreen",
+    "apps/tui-shell-fullscreen",
 ]
 
 [workspace.package]

@@ -159,7 +159,7 @@ mod tests {
         assert_eq!(get_service_name(22), Some("ssh"));
         assert_eq!(get_service_name(80), Some("http"));
         assert_eq!(get_service_name(443), Some("https"));
-        assert_eq!(get_service_name(99999), None);
+        assert_eq!(get_service_name(65535), None);
     }
 
     #[test]

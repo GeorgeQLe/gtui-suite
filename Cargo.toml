@@ -46,9 +46,9 @@ members = [
     "apps/git-client",
     "apps/api-tester",
     "apps/db-client",
-    # "apps/ci-dashboard",
-    # "apps/k8s-dashboard",
-    # "apps/metrics-viewer",
+    "apps/ci-dashboard",
+    "apps/k8s-dashboard",
+    "apps/metrics-viewer",
     "apps/queue-monitor-rabbitmq",
     "apps/queue-monitor-kafka",
     "apps/queue-monitor-redis",
@@ -106,7 +106,7 @@ directories = "5"
 polars = { version = "0.45", features = ["lazy", "csv", "parquet"] }
 
 # Networking
-reqwest = { version = "0.12", features = ["json"] }
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
 pnet = "0.35"
 
 # Git

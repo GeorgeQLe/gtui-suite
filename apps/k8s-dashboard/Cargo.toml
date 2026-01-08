@@ -1,0 +1,20 @@
+[package]
+name = "k8s-dashboard"
+version = "0.1.0"
+edition = "2021"
+description = "Kubernetes cluster dashboard with multi-cluster support"
+license = "MIT"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+serde_yaml = "0.9"
+toml = { workspace = true }
+anyhow = { workspace = true }
+chrono = { workspace = true }
+directories = { workspace = true }
+uuid = { workspace = true }
+futures = "0.3"

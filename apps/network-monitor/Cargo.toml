@@ -1,0 +1,11 @@
+[package]
+name = "network-monitor"
+version = "0.1.0"
+edition = "2021"
+description = "Network connection monitoring tool"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+anyhow = { workspace = true }
+chrono = { workspace = true }

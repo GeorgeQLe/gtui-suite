@@ -36,8 +36,8 @@ members = [
     "apps/backup-manager",
     "apps/server-dashboard-ssh",
     "apps/diff-tool",
+    "apps/network-monitor",
     # "apps/server-dashboard-agent",
-    # "apps/network-monitor",
 
     # Tier 4: Advanced apps
     "apps/hex-editor",
@@ -45,9 +45,9 @@ members = [
     "apps/kanban-standalone",
     "apps/git-client",
     "apps/api-tester",
+    "apps/db-client",
     # "apps/ci-dashboard",
     # "apps/k8s-dashboard",
-    # "apps/db-client",
     # "apps/metrics-viewer",
     # "apps/queue-monitor-rabbitmq",
     # "apps/queue-monitor-kafka",

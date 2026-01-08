@@ -44,7 +44,7 @@ members = [
     "apps/csv-viewer",
     "apps/kanban-standalone",
     "apps/git-client",
-    # "apps/api-tester",
+    "apps/api-tester",
     # "apps/ci-dashboard",
     # "apps/k8s-dashboard",
     # "apps/db-client",

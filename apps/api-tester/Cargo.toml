@@ -1,0 +1,20 @@
+[package]
+name = "api-tester"
+version = "0.1.0"
+edition = "2021"
+description = "HTTP API testing with collections and environments"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+rusqlite = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+toml = { workspace = true }
+chrono = { workspace = true }
+uuid = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+tokio = { workspace = true }
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "json"] }
+directories = "5"

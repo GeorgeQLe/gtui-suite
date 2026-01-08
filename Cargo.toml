@@ -60,7 +60,7 @@ members = [
     "apps/port-scanner-local",
     # "apps/port-scanner-full",
     # "apps/port-scanner-passive",
-    # "apps/permissions-auditor-consumer",
+    "apps/permissions-auditor-consumer",
     # "apps/permissions-auditor-enterprise",
     # "apps/tui-shell-tiled",
     # "apps/tui-shell-floating",

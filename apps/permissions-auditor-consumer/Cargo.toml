@@ -1,0 +1,18 @@
+[package]
+name = "permissions-auditor-consumer"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "File system permissions auditing for personal use"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+toml = { workspace = true }
+chrono = { workspace = true }
+anyhow = { workspace = true }
+directories = { workspace = true }
+uuid = { workspace = true }

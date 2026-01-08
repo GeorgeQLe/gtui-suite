@@ -62,7 +62,7 @@ members = [
     # "apps/port-scanner-passive",
     "apps/permissions-auditor-consumer",
     # "apps/permissions-auditor-enterprise",
-    # "apps/tui-shell-tiled",
+    "apps/tui-shell-tiled",
     # "apps/tui-shell-floating",
     # "apps/tui-shell-tabbed",
     # "apps/tui-shell-fullscreen",

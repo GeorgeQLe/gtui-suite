@@ -139,3 +139,109 @@ pub fn calculate_column_widths(data: &CsvData, max_width: u16) -> Vec<u16> {
 
     widths
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn test_data() -> CsvData {
+        CsvData {
+            path: None,
+            headers: vec!["Name".to_string(), "Age".to_string(), "City".to_string()],
+            rows: vec![
+                vec!["Alice".to_string(), "30".to_string(), "New York".to_string()],
+                vec!["Bob".to_string(), "25".to_string(), "Los Angeles".to_string()],
+                vec!["Charlie".to_string(), "35".to_string(), "Chicago".to_string()],
+            ],
+            delimiter: b',',
+        }
+    }
+
+    #[test]
+    fn test_new() {
+        let data = CsvData::new();
+        assert_eq!(data.row_count(), 0);
+        assert_eq!(data.col_count(), 0);
+    }
+
+    #[test]
+    fn test_row_col_count() {
+        let data = test_data();
+        assert_eq!(data.row_count(), 3);
+        assert_eq!(data.col_count(), 3);
+    }
+
+    #[test]
+    fn test_get_cell() {
+        let data = test_data();
+        assert_eq!(data.get_cell(0, 0), Some("Alice"));
+        assert_eq!(data.get_cell(1, 2), Some("Los Angeles"));
+        assert_eq!(data.get_cell(10, 0), None);
+        assert_eq!(data.get_cell(0, 10), None);
+    }
+
+    #[test]
+    fn test_sort_by_column_string() {
+        let mut data = test_data();
+        data.sort_by_column(0, true);
+        assert_eq!(data.get_cell(0, 0), Some("Alice"));
+        assert_eq!(data.get_cell(2, 0), Some("Charlie"));
+
+        data.sort_by_column(0, false);
+        assert_eq!(data.get_cell(0, 0), Some("Charlie"));
+        assert_eq!(data.get_cell(2, 0), Some("Alice"));
+    }
+
+    #[test]
+    fn test_sort_by_column_numeric() {
+        let mut data = test_data();
+        data.sort_by_column(1, true);
+        assert_eq!(data.get_cell(0, 1), Some("25"));
+        assert_eq!(data.get_cell(2, 1), Some("35"));
+
+        data.sort_by_column(1, false);
+        assert_eq!(data.get_cell(0, 1), Some("35"));
+        assert_eq!(data.get_cell(2, 1), Some("25"));
+    }
+
+    #[test]
+    fn test_filter() {
+        let data = test_data();
+        let results = data.filter(2, "Los");
+        assert_eq!(results, vec![1]);
+
+        let results = data.filter(2, "york");
+        assert_eq!(results, vec![0]);
+
+        let results = data.filter(0, "xyz");
+        assert!(results.is_empty());
+    }
+
+    #[test]
+    fn test_search() {
+        let data = test_data();
+        let results = data.search("charlie");
+        assert_eq!(results, vec![(2, 0)]);
+
+        let results = data.search("25");
+        assert_eq!(results, vec![(1, 1)]);
+
+        let results = data.search("xyz");
+        assert!(results.is_empty());
+    }
+
+    #[test]
+    fn test_calculate_column_widths() {
+        let data = test_data();
+        let widths = calculate_column_widths(&data, 100);
+        assert_eq!(widths.len(), 3);
+        assert!(widths.iter().all(|&w| w >= 5));
+    }
+
+    #[test]
+    fn test_calculate_column_widths_empty() {
+        let data = CsvData::new();
+        let widths = calculate_column_widths(&data, 100);
+        assert!(widths.is_empty());
+    }
+}

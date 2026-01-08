@@ -157,3 +157,77 @@ pub struct HistoryEntry {
     pub duration_ms: u64,
     pub timestamp: DateTime<Utc>,
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_method_as_str() {
+        assert_eq!(Method::GET.as_str(), "GET");
+        assert_eq!(Method::POST.as_str(), "POST");
+        assert_eq!(Method::DELETE.as_str(), "DELETE");
+    }
+
+    #[test]
+    fn test_method_next_cycle() {
+        let mut method = Method::GET;
+        let methods = [
+            Method::POST, Method::PUT, Method::PATCH,
+            Method::DELETE, Method::HEAD, Method::OPTIONS, Method::GET,
+        ];
+
+        for expected in methods {
+            method = method.next();
+            assert_eq!(method, expected);
+        }
+    }
+
+    #[test]
+    fn test_method_default() {
+        assert_eq!(Method::default(), Method::GET);
+    }
+
+    #[test]
+    fn test_header_new() {
+        let header = Header::new("Content-Type".to_string(), "application/json".to_string());
+        assert_eq!(header.key, "Content-Type");
+        assert_eq!(header.value, "application/json");
+        assert!(header.enabled);
+    }
+
+    #[test]
+    fn test_auth_config_default() {
+        let auth = AuthConfig::default();
+        assert_eq!(auth.auth_type, AuthType::None);
+        assert!(auth.username.is_none());
+        assert!(auth.password.is_none());
+        assert!(auth.token.is_none());
+    }
+
+    #[test]
+    fn test_saved_request_new() {
+        let request = SavedRequest::new("Test Request".to_string());
+        assert_eq!(request.name, "Test Request");
+        assert_eq!(request.method, Method::GET);
+        assert!(request.url.is_empty());
+        assert!(request.headers.is_empty());
+        assert!(request.body.is_none());
+    }
+
+    #[test]
+    fn test_collection_new() {
+        let collection = Collection::new("My Collection".to_string());
+        assert_eq!(collection.name, "My Collection");
+        assert!(collection.requests.is_empty());
+    }
+
+    #[test]
+    fn test_method_serialization() {
+        let json = serde_json::to_string(&Method::POST).unwrap();
+        assert_eq!(json, "\"POST\"");
+
+        let method: Method = serde_json::from_str("\"DELETE\"").unwrap();
+        assert_eq!(method, Method::DELETE);
+    }
+}

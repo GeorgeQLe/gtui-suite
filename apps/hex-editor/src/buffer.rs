@@ -169,3 +169,100 @@ pub fn format_ascii(byte: u8) -> char {
         '.'
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_new_buffer() {
+        let buf = HexBuffer::new();
+        assert!(buf.is_empty());
+        assert!(!buf.modified);
+        assert!(buf.path.is_none());
+    }
+
+    #[test]
+    fn test_insert_delete() {
+        let mut buf = HexBuffer::new();
+        buf.insert(0, 0x41);
+        buf.insert(1, 0x42);
+        buf.insert(2, 0x43);
+
+        assert_eq!(buf.len(), 3);
+        assert_eq!(buf.get(0), Some(0x41));
+        assert_eq!(buf.get(1), Some(0x42));
+        assert_eq!(buf.get(2), Some(0x43));
+        assert!(buf.modified);
+
+        buf.delete(1);
+        assert_eq!(buf.len(), 2);
+        assert_eq!(buf.get(0), Some(0x41));
+        assert_eq!(buf.get(1), Some(0x43));
+    }
+
+    #[test]
+    fn test_set_and_undo_redo() {
+        let mut buf = HexBuffer::new();
+        buf.data = vec![0x00, 0x00, 0x00];
+        buf.modified = false;
+
+        buf.set(1, 0xFF);
+        assert_eq!(buf.get(1), Some(0xFF));
+        assert!(buf.modified);
+        assert_eq!(buf.undo_stack.len(), 1);
+
+        buf.undo();
+        assert_eq!(buf.get(1), Some(0x00));
+        assert_eq!(buf.redo_stack.len(), 1);
+
+        buf.redo();
+        assert_eq!(buf.get(1), Some(0xFF));
+        assert_eq!(buf.undo_stack.len(), 1);
+    }
+
+    #[test]
+    fn test_search() {
+        let mut buf = HexBuffer::new();
+        buf.data = vec![0x48, 0x65, 0x6C, 0x6C, 0x6F]; // "Hello"
+
+        assert_eq!(buf.search(&[0x6C, 0x6C], 0), Some(2)); // "ll"
+        assert_eq!(buf.search(&[0x6C, 0x6C], 3), None);
+        assert_eq!(buf.search(&[0x48], 0), Some(0)); // "H"
+        assert_eq!(buf.search(&[0xFF], 0), None);
+    }
+
+    #[test]
+    fn test_search_hex() {
+        let mut buf = HexBuffer::new();
+        buf.data = vec![0x48, 0x65, 0x6C, 0x6C, 0x6F];
+
+        assert_eq!(buf.search_hex("6C6C", 0), Some(2));
+        assert_eq!(buf.search_hex("6c 6c", 0), Some(2));
+        assert_eq!(buf.search_hex("FFFF", 0), None);
+    }
+
+    #[test]
+    fn test_parse_hex_string() {
+        assert_eq!(parse_hex_string("4142"), Some(vec![0x41, 0x42]));
+        assert_eq!(parse_hex_string("41 42"), Some(vec![0x41, 0x42]));
+        assert_eq!(parse_hex_string("ff"), Some(vec![0xFF]));
+        assert_eq!(parse_hex_string("4"), None); // Odd length
+        assert_eq!(parse_hex_string(""), Some(vec![]));
+    }
+
+    #[test]
+    fn test_format_hex() {
+        assert_eq!(format_hex(0x00), "00");
+        assert_eq!(format_hex(0xFF), "FF");
+        assert_eq!(format_hex(0x0A), "0A");
+    }
+
+    #[test]
+    fn test_format_ascii() {
+        assert_eq!(format_ascii(b'A'), 'A');
+        assert_eq!(format_ascii(b' '), ' ');
+        assert_eq!(format_ascii(0x00), '.');
+        assert_eq!(format_ascii(0x7F), '.');
+    }
+}

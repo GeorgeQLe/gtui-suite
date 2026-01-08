@@ -32,3 +32,4 @@ proptest = { workspace = true, optional = true }
 [dev-dependencies]
 tokio = { workspace = true, features = ["rt-multi-thread", "macros", "test-util"] }
 proptest = { workspace = true }
+tempfile = "3"

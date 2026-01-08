@@ -2,7 +2,7 @@ use anyhow::Result;
 use serde::{Deserialize, Serialize};
 use std::path::PathBuf;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct Config {
     #[serde(default)]
     pub runtime: RuntimeConfig,
@@ -45,16 +45,6 @@ fn default_docker_socket() -> String { "/var/run/docker.sock".to_string() }
 fn default_podman_socket() -> String { "$XDG_RUNTIME_DIR/podman/podman.sock".to_string() }
 fn default_max_lines() -> usize { 1000 }
 fn default_true() -> bool { true }
-
-impl Default for Config {
-    fn default() -> Self {
-        Self {
-            runtime: RuntimeConfig::default(),
-            display: DisplayConfig::default(),
-            logs: LogsConfig::default(),
-        }
-    }
-}
 
 impl Default for RuntimeConfig {
     fn default() -> Self {

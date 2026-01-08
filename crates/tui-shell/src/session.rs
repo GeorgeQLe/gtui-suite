@@ -15,7 +15,7 @@ pub trait SessionState {
 }
 
 /// Complete session snapshot.
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct Session {
     /// Layout state.
     pub layout: LayoutState,
@@ -25,17 +25,6 @@ pub struct Session {
     pub focused: Option<AppId>,
     /// Workspaces.
     pub workspaces: Vec<Workspace>,
-}
-
-impl Default for Session {
-    fn default() -> Self {
-        Self {
-            layout: LayoutState::default(),
-            apps: Vec::new(),
-            focused: None,
-            workspaces: Vec::new(),
-        }
-    }
 }
 
 /// Session data for a single app.

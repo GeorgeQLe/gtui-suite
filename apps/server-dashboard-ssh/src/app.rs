@@ -231,8 +231,8 @@ impl App {
                 }
             }
 
-            // Display toggles
-            KeyCode::Char('G') => {
+            // Display toggles - use 'o' for graph toggle since 'G' is used for End
+            KeyCode::Char('o') => {
                 self.show_graphs = !self.show_graphs;
             }
             KeyCode::Char(' ') => {

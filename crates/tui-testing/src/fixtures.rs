@@ -399,7 +399,8 @@ mod tests {
     #[test]
     fn test_sized_tree() {
         let tree = Fixtures::tree(3, 2);
-        assert_eq!(tree.depth(), 3);
+        // depth parameter means branching levels, plus 1 for leaves = 4 total depth
+        assert_eq!(tree.depth(), 4);
     }
 
     #[test]

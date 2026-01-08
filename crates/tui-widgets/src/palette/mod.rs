@@ -584,6 +584,7 @@ impl Accessible for CommandPalette {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::CommandError;
 
     struct TestCommand {
         id: String,

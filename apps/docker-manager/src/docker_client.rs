@@ -227,7 +227,6 @@ impl DockerClient {
         Ok(volumes.into_iter().map(|v| {
             let labels = v.labels
                 .into_iter()
-                .map(|(k, v)| (k, v))
                 .collect();
 
             Volume {

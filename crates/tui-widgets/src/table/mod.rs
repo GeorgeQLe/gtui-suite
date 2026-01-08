@@ -818,7 +818,7 @@ mod tests {
 
     #[test]
     fn test_selection() {
-        let table = DataTable::new(test_columns(), test_data());
+        let _table = DataTable::new(test_columns(), test_data());
         let mut state = TableState::default();
 
         state.selected = Selection::Single(1);

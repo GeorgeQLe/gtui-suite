@@ -6,7 +6,7 @@ use serde::{Deserialize, Serialize};
 use std::fs;
 use std::path::PathBuf;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct Config {
     #[serde(default)]
     pub board: BoardConfig,
@@ -60,14 +60,6 @@ impl Default for DisplayConfig {
     }
 }
 
-impl Default for Config {
-    fn default() -> Self {
-        Self {
-            board: BoardConfig::default(),
-            display: DisplayConfig::default(),
-        }
-    }
-}
 
 impl Config {
     pub fn load() -> Result<Self> {

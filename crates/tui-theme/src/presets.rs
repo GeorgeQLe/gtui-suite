@@ -759,7 +759,7 @@ mod tests {
     #[test]
     fn test_all_themes_have_palettes() {
         let themes = builtin_themes();
-        for (name, theme) in themes {
+        for (_name, theme) in themes {
             // Just verify they don't panic when accessed
             let _ = &theme.colors.true_color.accent;
             let _ = &theme.colors.color_256.accent;

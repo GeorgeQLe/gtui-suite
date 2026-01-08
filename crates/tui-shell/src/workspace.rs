@@ -191,7 +191,7 @@ impl WorkspaceManager {
     }
 
     /// Switch to next workspace.
-    pub fn next(&mut self) -> Option<WorkspaceId> {
+    pub fn switch_next(&mut self) -> Option<WorkspaceId> {
         if self.order.is_empty() {
             return None;
         }
@@ -340,7 +340,7 @@ mod tests {
         let ws3 = manager.create("ws3");
 
         manager.switch_to(ws2);
-        manager.next();
+        manager.switch_next();
         assert_eq!(manager.active_id(), Some(ws3));
 
         manager.prev();

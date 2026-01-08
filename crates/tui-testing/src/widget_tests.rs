@@ -347,7 +347,7 @@ mod tests {
     #[test]
     fn test_widget_tester() {
         let widget = Paragraph::new("Hello, World!");
-        let tester = WidgetTester::new(widget, 20, 5);
+        let mut tester = WidgetTester::new(widget, 20, 5);
 
         tester
             .render()

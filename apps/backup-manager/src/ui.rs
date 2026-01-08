@@ -159,7 +159,7 @@ fn render_runs(frame: &mut Frame, app: &App, area: Rect) {
             run.started_at.format("%Y-%m-%d %H:%M").to_string(),
             run.duration_display(),
             run.files_transferred.map(|f| f.to_string()).unwrap_or_default(),
-            run.bytes_transferred.map(|b| crate::profile::format_bytes(b)).unwrap_or_default(),
+            run.bytes_transferred.map(crate::profile::format_bytes).unwrap_or_default(),
             run.error_message.clone().unwrap_or_default(),
         ]).style(style)
     }).collect();

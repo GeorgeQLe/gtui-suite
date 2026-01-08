@@ -124,6 +124,7 @@ impl std::fmt::Display for ConflictReport {
 mod tests {
     use super::*;
     use crate::binding::KeyBinding;
+    #[allow(unused_imports)]
     use crossterm::event::KeyCode;
 
     #[test]

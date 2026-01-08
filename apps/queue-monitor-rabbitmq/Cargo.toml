@@ -1,0 +1,20 @@
+[package]
+name = "queue-monitor-rabbitmq"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "RabbitMQ monitoring and management TUI"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+toml = { workspace = true }
+chrono = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+tokio = { workspace = true }
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "json"] }
+directories = "5"
+base64 = "0.22"

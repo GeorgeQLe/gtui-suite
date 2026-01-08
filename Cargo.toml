@@ -57,7 +57,7 @@ members = [
     # "apps/chat-client",
     # "apps/email-client",
     # "apps/log-anomaly-detector",
-    # "apps/port-scanner-local",
+    "apps/port-scanner-local",
     # "apps/port-scanner-full",
     # "apps/port-scanner-passive",
     # "apps/permissions-auditor-consumer",

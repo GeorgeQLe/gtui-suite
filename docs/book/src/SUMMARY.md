@@ -34,6 +34,7 @@
 # Guides
 
 - [Building an App](./guides/building-an-app.md)
+- [Practical Examples](./guides/examples.md)
 - [Using Shared Crates](./guides/using-shared-crates.md)
 - [Theming](./guides/theming.md)
 - [Keybindings](./guides/keybindings.md)

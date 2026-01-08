@@ -64,7 +64,7 @@ members = [
     # "apps/permissions-auditor-enterprise",
     "apps/tui-shell-tiled",
     "apps/tui-shell-floating",
-    # "apps/tui-shell-tabbed",
+    "apps/tui-shell-tabbed",
     # "apps/tui-shell-fullscreen",
 ]
 

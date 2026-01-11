@@ -1,0 +1,19 @@
+[package]
+name = "server-dashboard-agent"
+version = "0.1.0"
+edition = "2021"
+description = "Agent-based server monitoring with central collector"
+license = "MIT"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+toml = { workspace = true }
+anyhow = { workspace = true }
+chrono = { workspace = true }
+directories = { workspace = true }
+uuid = { workspace = true }
+sysinfo = "0.32"

@@ -37,7 +37,7 @@ members = [
     "apps/server-dashboard-ssh",
     "apps/diff-tool",
     "apps/network-monitor",
-    # "apps/server-dashboard-agent",
+    "apps/server-dashboard-agent",
 
     # Tier 4: Advanced apps
     "apps/hex-editor",
@@ -52,7 +52,7 @@ members = [
     "apps/queue-monitor-rabbitmq",
     "apps/queue-monitor-kafka",
     "apps/queue-monitor-redis",
-    # "apps/kanban-integrated",
+    "apps/kanban-integrated",
     # "apps/cli-wizard-generator",
     "apps/chat-client",
     "apps/email-client",

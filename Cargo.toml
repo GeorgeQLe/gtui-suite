@@ -145,6 +145,18 @@ members = [
     "apps/fan-control",
     "apps/gpu-monitor",
     "apps/sensor-dashboard",
+
+    # Batch 8: Networking tools
+    "apps/connection-tracker",
+    "apps/http-inspector",
+    "apps/latency-tester",
+    "apps/mtr-viewer",
+    "apps/packet-analyzer",
+    "apps/route-viewer",
+    "apps/socket-stats",
+    "apps/whois-browser",
+    "apps/dns-manager",
+    "apps/firewall-manager",
 ]
 
 [workspace.package]

@@ -1,0 +1,15 @@
+[package]
+name = "git-worktree-manager"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+description = "TUI git worktree management with status overview"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+tokio = { workspace = true }
+anyhow = { workspace = true }
+git2 = { version = "0.19", default-features = false }

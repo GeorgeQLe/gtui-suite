@@ -1,0 +1,15 @@
+[package]
+name = "submodule-manager"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+description = "TUI git submodule management with sync status"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+tokio = { workspace = true }
+anyhow = { workspace = true }
+git2 = { version = "0.19", default-features = false }

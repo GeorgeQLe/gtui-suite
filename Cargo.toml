@@ -113,6 +113,16 @@ members = [
     "apps/stopwatch",
     "apps/unit-converter",
     "apps/text-stats",
+    "apps/git-worktree-manager",
+    "apps/submodule-manager",
+    "apps/cargo-workspace-manager",
+    "apps/version-bumper",
+    "apps/complexity-analyzer",
+    "apps/dead-code-finder",
+    "apps/changelog-generator",
+    "apps/cpu-profiler",
+    "apps/fd-inspector",
+    "apps/memory-profiler",
 ]
 
 [workspace.package]

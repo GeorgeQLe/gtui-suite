@@ -1,0 +1,15 @@
+[package]
+name = "ssl-checker"
+version = "0.1.0"
+edition = "2021"
+description = "TUI SSL certificate checker and expiration monitor"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }
+chrono = { workspace = true }
+directories = { workspace = true }

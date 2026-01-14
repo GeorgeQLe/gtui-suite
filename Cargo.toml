@@ -66,6 +66,13 @@ members = [
     "apps/tui-shell-floating",
     "apps/tui-shell-tabbed",
     "apps/tui-shell-fullscreen",
+
+    # Utility apps
+    "apps/clipboard-manager",
+    "apps/snippet-manager",
+    "apps/json-explorer",
+    "apps/cron-manager",
+    "apps/ssl-checker",
 ]
 
 [workspace.package]
@@ -115,6 +122,9 @@ git2 = "0.19"
 # Fuzzy finding
 fuzzy-matcher = "0.3"
 nucleo-matcher = "0.3"
+
+# Clipboard
+arboard = "3"
 
 # Testing
 insta = "1"

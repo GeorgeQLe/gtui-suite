@@ -1,0 +1,16 @@
+[package]
+name = "cron-manager"
+version = "0.1.0"
+edition = "2021"
+description = "TUI crontab editor with human-readable descriptions"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }
+chrono = { workspace = true }
+directories = { workspace = true }
+uuid = { workspace = true }

@@ -1,0 +1,19 @@
+[package]
+name = "clipboard-manager"
+version = "0.1.0"
+edition = "2021"
+description = "TUI clipboard history manager with search and categories"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }
+chrono = { workspace = true }
+directories = { workspace = true }
+uuid = { workspace = true }
+fuzzy-matcher = { workspace = true }
+arboard = "3"
+rusqlite = { workspace = true }

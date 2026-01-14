@@ -123,6 +123,16 @@ members = [
     "apps/cpu-profiler",
     "apps/fd-inspector",
     "apps/memory-profiler",
+    "apps/oom-monitor",
+    "apps/swap-manager",
+    "apps/zombie-hunter",
+    "apps/acl-editor",
+    "apps/attr-editor",
+    "apps/inode-inspector",
+    "apps/link-manager",
+    "apps/quota-manager",
+    "apps/patch-creator",
+    "apps/outdated-deps",
 ]
 
 [workspace.package]

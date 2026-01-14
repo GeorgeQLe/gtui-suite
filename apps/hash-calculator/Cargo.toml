@@ -1,0 +1,14 @@
+[package]
+name = "hash-calculator"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+description = "TUI hash calculation tool (MD5, SHA, etc.)"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+tokio = { workspace = true }
+anyhow = { workspace = true }

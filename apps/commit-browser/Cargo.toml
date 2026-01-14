@@ -1,0 +1,17 @@
+[package]
+name = "commit-browser"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+description = "TUI git commit history browser"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+tokio = { workspace = true }
+anyhow = { workspace = true }
+git2 = { version = "0.19", default-features = false }
+chrono = { workspace = true }
+fuzzy-matcher = { workspace = true }

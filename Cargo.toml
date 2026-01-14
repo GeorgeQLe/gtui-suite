@@ -93,6 +93,16 @@ members = [
     "apps/env-diff",
     "apps/base64-tool",
     "apps/epoch-converter",
+    "apps/blame-viewer",
+    "apps/branch-manager",
+    "apps/commit-browser",
+    "apps/trash-manager",
+    "apps/dns-explorer",
+    "apps/hash-calculator",
+    "apps/uuid-generator",
+    "apps/typing-test",
+    "apps/ascii-table",
+    "apps/color-converter",
 ]
 
 [workspace.package]

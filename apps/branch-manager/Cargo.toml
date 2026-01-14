@@ -1,0 +1,16 @@
+[package]
+name = "branch-manager"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+description = "TUI visual branch comparison and management"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+tokio = { workspace = true }
+anyhow = { workspace = true }
+git2 = { version = "0.19", default-features = false }
+chrono = { workspace = true }

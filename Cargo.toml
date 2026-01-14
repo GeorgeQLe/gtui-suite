@@ -103,6 +103,16 @@ members = [
     "apps/typing-test",
     "apps/ascii-table",
     "apps/color-converter",
+    "apps/conflict-resolver",
+    "apps/reflog-explorer",
+    "apps/dependency-graph",
+    "apps/license-checker",
+    "apps/jwt-debugger",
+    "apps/world-clock",
+    "apps/countdown-timer",
+    "apps/stopwatch",
+    "apps/unit-converter",
+    "apps/text-stats",
 ]
 
 [workspace.package]

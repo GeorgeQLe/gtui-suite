@@ -1,0 +1,21 @@
+[package]
+name = "cli-wizard-generator"
+version = "0.1.0"
+edition = "2021"
+description = "Generate interactive wizards that produce scripts and configs"
+license = "MIT"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+serde_yaml = "0.9"
+toml = { workspace = true }
+anyhow = { workspace = true }
+chrono = { workspace = true }
+directories = { workspace = true }
+uuid = { workspace = true }
+regex = "1"
+handlebars = "6"

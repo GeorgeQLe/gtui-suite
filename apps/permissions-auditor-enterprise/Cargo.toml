@@ -1,0 +1,18 @@
+[package]
+name = "permissions-auditor-enterprise"
+version = "0.1.0"
+edition = "2021"
+description = "Enterprise-grade permissions auditing with compliance frameworks"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+toml = { workspace = true }
+anyhow = { workspace = true }
+chrono = { workspace = true }
+directories = { workspace = true }
+uuid = { workspace = true }
+rusqlite = { workspace = true }

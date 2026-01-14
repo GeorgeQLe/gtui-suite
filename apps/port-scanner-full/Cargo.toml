@@ -1,0 +1,18 @@
+[package]
+name = "port-scanner-full"
+version = "0.1.0"
+edition = "2021"
+description = "Comprehensive nmap-style port scanner for authorized testing"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+toml = { workspace = true }
+anyhow = { workspace = true }
+chrono = { workspace = true }
+directories = { workspace = true }
+uuid = { workspace = true }
+rusqlite = { workspace = true }

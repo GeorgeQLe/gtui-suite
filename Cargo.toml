@@ -157,6 +157,18 @@ members = [
     "apps/whois-browser",
     "apps/dns-manager",
     "apps/firewall-manager",
+
+    # Batch 9: Remote access & container tools
+    "apps/rdp-manager",
+    "apps/scp-browser",
+    "apps/sftp-client",
+    "apps/ssh-tunnel-manager",
+    "apps/vnc-manager",
+    "apps/wake-on-lan",
+    "apps/compose-manager",
+    "apps/container-logs",
+    "apps/image-browser",
+    "apps/registry-browser",
 ]
 
 [workspace.package]

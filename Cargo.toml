@@ -133,6 +133,18 @@ members = [
     "apps/quota-manager",
     "apps/patch-creator",
     "apps/outdated-deps",
+
+    # Batch 7: System config & hardware monitoring
+    "apps/bootloader-config",
+    "apps/fstab-editor",
+    "apps/hostname-manager",
+    "apps/locale-manager",
+    "apps/timezone-selector",
+    "apps/user-manager",
+    "apps/battery-monitor",
+    "apps/fan-control",
+    "apps/gpu-monitor",
+    "apps/sensor-dashboard",
 ]
 
 [workspace.package]

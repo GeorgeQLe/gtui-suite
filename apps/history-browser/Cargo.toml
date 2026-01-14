@@ -1,0 +1,17 @@
+[package]
+name = "history-browser"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+description = "TUI shell history browser with search"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+tokio = { workspace = true }
+anyhow = { workspace = true }
+fuzzy-matcher = { workspace = true }
+directories = { workspace = true }
+chrono = { workspace = true }

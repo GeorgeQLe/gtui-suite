@@ -83,6 +83,16 @@ members = [
     "apps/pomodoro-timer",
     "apps/sqlite-browser",
     "apps/man-browser",
+    "apps/bookmark-manager",
+    "apps/history-browser",
+    "apps/mount-manager",
+    "apps/bandwidth-monitor",
+    "apps/todo-scanner",
+    "apps/markdown-editor",
+    "apps/podcast-player",
+    "apps/env-diff",
+    "apps/base64-tool",
+    "apps/epoch-converter",
 ]
 
 [workspace.package]

@@ -1,0 +1,15 @@
+[package]
+name = "todo-scanner"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+description = "TUI tool to find TODO/FIXME/HACK comments in codebase"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+tokio = { workspace = true }
+anyhow = { workspace = true }
+regex = { workspace = true }

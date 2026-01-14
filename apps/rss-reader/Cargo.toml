@@ -1,0 +1,14 @@
+[package]
+name = "rss-reader"
+version = "0.1.0"
+edition = "2021"
+description = "TUI RSS/Atom feed reader"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+tokio = { workspace = true }
+anyhow = { workspace = true }
+chrono = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }

@@ -1,0 +1,12 @@
+[package]
+name = "disk-analyzer"
+version = "0.1.0"
+edition = "2021"
+description = "TUI disk usage analyzer with visual treemap"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+tokio = { workspace = true }
+anyhow = { workspace = true }
+chrono = { workspace = true }

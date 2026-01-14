@@ -1,0 +1,12 @@
+[package]
+name = "systemd-journal"
+version = "0.1.0"
+edition = "2021"
+description = "TUI systemd journal/journalctl browser"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+tokio = { workspace = true }
+anyhow = { workspace = true }
+chrono = { workspace = true }

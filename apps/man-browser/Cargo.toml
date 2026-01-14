@@ -1,0 +1,12 @@
+[package]
+name = "man-browser"
+version = "0.1.0"
+edition = "2021"
+description = "TUI man page browser with search"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+tokio = { workspace = true }
+anyhow = { workspace = true }
+fuzzy-matcher = { workspace = true }

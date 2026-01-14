@@ -1,0 +1,12 @@
+[package]
+name = "sqlite-browser"
+version = "0.1.0"
+edition = "2021"
+description = "TUI SQLite database browser"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+tokio = { workspace = true }
+anyhow = { workspace = true }
+rusqlite = { workspace = true }

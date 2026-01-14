@@ -1,0 +1,12 @@
+[package]
+name = "git-stash-manager"
+version = "0.1.0"
+edition = "2021"
+description = "TUI git stash management with preview and partial apply"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+tokio = { workspace = true }
+anyhow = { workspace = true }
+chrono = { workspace = true }

@@ -1,0 +1,12 @@
+[package]
+name = "pomodoro-timer"
+version = "0.1.0"
+edition = "2021"
+description = "TUI Pomodoro technique timer with statistics"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+tokio = { workspace = true }
+anyhow = { workspace = true }
+chrono = { workspace = true }

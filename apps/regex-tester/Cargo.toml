@@ -1,0 +1,12 @@
+[package]
+name = "regex-tester"
+version = "0.1.0"
+edition = "2021"
+description = "TUI regular expression tester with match highlighting"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+tokio = { workspace = true }
+anyhow = { workspace = true }
+regex = "1"

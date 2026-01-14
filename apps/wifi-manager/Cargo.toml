@@ -1,0 +1,11 @@
+[package]
+name = "wifi-manager"
+version = "0.1.0"
+edition = "2021"
+description = "TUI WiFi network manager"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+tokio = { workspace = true }
+anyhow = { workspace = true }

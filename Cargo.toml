@@ -73,6 +73,16 @@ members = [
     "apps/json-explorer",
     "apps/cron-manager",
     "apps/ssl-checker",
+    "apps/disk-analyzer",
+    "apps/git-stash-manager",
+    "apps/rss-reader",
+    "apps/password-generator",
+    "apps/regex-tester",
+    "apps/systemd-journal",
+    "apps/wifi-manager",
+    "apps/pomodoro-timer",
+    "apps/sqlite-browser",
+    "apps/man-browser",
 ]
 
 [workspace.package]
@@ -125,6 +135,10 @@ nucleo-matcher = "0.3"
 
 # Clipboard
 arboard = "3"
+
+# Random & Regex
+rand = "0.8"
+regex = "1"
 
 # Testing
 insta = "1"

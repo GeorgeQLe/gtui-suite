@@ -1,0 +1,12 @@
+[package]
+name = "password-generator"
+version = "0.1.0"
+edition = "2021"
+description = "TUI secure password generator with strength analysis"
+
+[dependencies]
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+tokio = { workspace = true }
+anyhow = { workspace = true }
+rand = "0.8"

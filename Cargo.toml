@@ -169,6 +169,18 @@ members = [
     "apps/container-logs",
     "apps/image-browser",
     "apps/registry-browser",
+
+    # Batch 10: DevOps/Cloud/CI tools
+    "apps/helm-browser",
+    "apps/pod-shell",
+    "apps/s3-browser",
+    "apps/terraform-state",
+    "apps/github-actions",
+    "apps/gitlab-pipelines",
+    "apps/jenkins-dashboard",
+    "apps/alert-manager",
+    "apps/grafana-browser",
+    "apps/prometheus-browser",
 ]
 
 [workspace.package]
